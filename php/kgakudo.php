@@ -29,6 +29,8 @@ $GSI = 'https://msearch.gsi.go.jp/address-search/AddressSearch';
 
 $D = json_decode(@file_get_contents("$DATA_DIR/gakudo_$YEAR.json"), true);
 if (!$D) { http_response_code(500); echo 'データを読み込めませんでした'; exit; }
+// 保育所（保育園）。こども家庭庁が Excel で1,741市区町村ぶん出しているので、住所から引ける形にして添える。
+$HK = json_decode(@file_get_contents("$DATA_DIR/hoiku_$YEAR.json"), true);
 
 // ── データの引き当て ────────────────────────────────────
 function area_by_name($D, $name) {
@@ -39,6 +41,27 @@ function waiting50_of($D, $pref, $city) {
     foreach ($D['waiting50'] as $r) { if ($r['pref'] === $pref && $r['city'] === $city) return $r; }
     return null;
 }
+/** 保育所（保育園）の数字。無い市区町村は null を返す（0と断定しない）。 */
+function hoiku_of($HK, $pref, $city) {
+    if (!$HK || !$pref || !$city) return null;
+    foreach ($HK['municipalities'] as $r) {
+        if ($r['pref'] === $pref && $r['city'] === $city) return $r;
+    }
+    return null;
+}
+
+function hoiku_national($HK) {
+    if (!$HK) return null;
+    $w = 0; $n = 0; $cap = 0; $app = 0;
+    foreach ($HK['municipalities'] as $r) {
+        if (isset($r['waiting']) && $r['waiting'] !== null) { $w += (int)$r['waiting']; if ((int)$r['waiting'] > 0) $n++; }
+        $cap += (int)(isset($r['capacity_hoikusho']) ? $r['capacity_hoikusho'] : 0);
+        $app += (int)(isset($r['applicants']) ? $r['applicants'] : 0);
+    }
+    return array('waiting' => $w, 'cities' => $n, 'capacity' => $cap, 'applicants' => $app,
+                 'as_of' => $HK['as_of'], 'total' => count($HK['municipalities']));
+}
+
 function national($D) {
     $w = 0; $c = 0; $g = 0;
     foreach ($D['areas'] as $r) { $w += isset($r['waiting']) ? $r['waiting'] : 0; $c += $r['clubs']; $g += $r['registered']; }
@@ -78,12 +101,13 @@ function normalize_address($q, $GSI) {
     return $best ? $best : $q;
 }
 
-function judge($D, $addr) {
+function judge($D, $addr, $HK = null) {
     list($pref, $city) = split_address($addr);
     $out = array('address' => $addr, 'pref' => $pref, 'city' => $city, 'status' => 'unknown',
                  'area' => null, 'pref_area' => null, 'listed' => null, 'as_of' => $D['as_of'],
-                 'source' => $D['source'], 'source_url' => $D['source_url']);
+                 'source' => $D['source'], 'source_url' => $D['source_url'], 'hoiku' => null);
     if (!$pref) return $out;
+    $out['hoiku'] = hoiku_of($HK, $pref, $city);
     $out['pref_area'] = area_by_name($D, $pref);
     if ($city) {
         $a = area_by_name($D, $city);
@@ -156,7 +180,14 @@ function head_html($title, $desc, $SELF, $SITE, $nav, $canon) {
                   'distribution' => array(
                       array('@type' => 'DataDownload', 'encodingFormat' => 'text/csv', 'contentUrl' => $base . '/data/gakudo_areas_2025.csv'),
                       array('@type' => 'DataDownload', 'encodingFormat' => 'application/json', 'contentUrl' => $base . '/data/gakudo_2025.json'))),
+            array('@type' => 'Dataset', 'name' => '保育所等関連状況（定員・申込者・待機児童）',
+                  'description' => 'こども家庭庁「保育所等関連状況取りまとめ」から、全1,741市区町村の定員・申込者と、待機児童がいる市区町村の待機児童数を住所から引ける形にしたもの。',
+                  'url' => $base . '/data', 'inLanguage' => 'ja',
+                  'creator' => array('@type' => 'GovernmentOrganization', 'name' => 'こども家庭庁'),
+                  'isBasedOn' => 'https://www.cfa.go.jp/policies/hoiku/torimatome/'),
             array('@type' => 'FAQPage', 'mainEntity' => array(
+                array('@type' => 'Question', 'name' => '保育園の待機児童数も住所から調べられますか',
+                      'acceptedAnswer' => array('@type' => 'Answer', 'text' => '調べられます。保育所（保育園）はこども家庭庁がExcelで全1,741市区町村ぶんを公表しているため、定員と申込者は全国どこでも出ます。待機児童数は「待機児童がいる市区町村」の一覧にある分だけで、一覧に無い市区町村は0人とは書かずに「一覧に載っていません」と表示します。')),
                 array('@type' => 'Question', 'name' => '学童保育の待機児童数は、自分の市の数字を調べられますか',
                       'acceptedAnswer' => array('@type' => 'Answer', 'text' => '指定都市・中核市など82自治体と、待機児童が50人以上いる88市町村については分かります。それ以外の市町村は国が公表していないため、このサイトでは「未公表」と表示します。待機児童がいないという意味ではありません。')),
                 array('@type' => 'Question', 'name' => '全国の学童保育の待機児童は何人ですか',
@@ -193,11 +224,13 @@ $path = isset($_SERVER['PATH_INFO']) ? trim($_SERVER['PATH_INFO'], '/') : '';
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $nat = national($D);
 $GLOBALS['NATG'] = $nat;
+$HKN = hoiku_national($HK);
+$GLOBALS['HKNG'] = $HKN;
 
 // データファイルの配布
 if (strpos($path, 'data/') === 0) {
     $f = basename(substr($path, 5));
-    if (preg_match('/^gakudo_[a-z0-9_]+\.(csv|json)$/', $f) && is_file("$DATA_DIR/$f")) {
+    if (preg_match('/^(gakudo|hoiku)_[a-z0-9_]+\.(csv|json)$/', $f) && is_file("$DATA_DIR/$f")) {
         header('Content-Type: ' . (substr($f, -4) === '.csv' ? 'text/csv; charset=utf-8' : 'application/json'));
         header('Content-Disposition: attachment; filename="' . $f . '"');
         readfile("$DATA_DIR/$f"); exit;
@@ -208,7 +241,7 @@ if (strpos($path, 'data/') === 0) {
 if ($path === 'api/check') {
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: no-store');
-    echo json_encode(judge($D, $q ? normalize_address($q, $GSI) : ''), JSON_UNESCAPED_UNICODE); exit;
+    echo json_encode(judge($D, $q ? normalize_address($q, $GSI) : '', $HK), JSON_UNESCAPED_UNICODE); exit;
 }
 if ($path === 'llms.txt' || $path === 'robots.txt' || $path === 'sitemap.xml') {
     $base = 'https://kurage.exbridge.jp' . $SELF;
@@ -227,7 +260,13 @@ if ($path === 'llms.txt' || $path === 'robots.txt' || $path === 'sitemap.xml') {
     echo "- 国が市区町村名で公表しているのは、待機児童が50人以上の{$nat['w50n']}市町村だけ\n";
     echo "- 残る " . n($nat['unnamed']) . "人（{$nat['pct']}%）は、どの市町村のものか国の公表では分かりません\n";
     echo "- 当社は推定をしません。公表されていない市町村は「未公表」と書きます\n\n";
-    echo "住所で調べる: $base/\nデータ配布(CSV/JSON): $base/data\n"; exit;
+    if ($HK) {
+        echo "\n## 保育所（保育園）も同じ住所で出ます\n";
+        echo "- 出典: こども家庭庁「保育所等関連状況取りまとめ」（{$HK['as_of']}現在）。こちらは国がExcelで全1,741市区町村ぶんを公表しています\n";
+        echo "- 全国の待機児童 " . n($HKN['waiting']) . "人・" . n($HKN['cities']) . "市区町村\n";
+        echo "- 待機児童の一覧に無い市区町村は「一覧に載っていません」と書き、0人とは書きません\n";
+    }
+    echo "\n住所で調べる: $base/\nデータ配布(CSV/JSON): $base/data\n"; exit;
 }
 
 // 都道府県・市のページ
@@ -287,6 +326,12 @@ if ($path === 'data') {
     echo '<li><a href="' . h($SELF) . '/data/gakudo_areas_' . $GLOBALS['YEAR'] . '.csv">都道府県・指定都市・中核市等 ' . count($D['areas']) . '件（CSV）</a> — クラブ数・登録児童数・待機児童数・前年比</li>';
     echo '<li><a href="' . h($SELF) . '/data/gakudo_waiting50_' . $GLOBALS['YEAR'] . '.csv">待機児童50人以上の市町村 ' . $nat['w50n'] . '件（CSV）</a></li>';
     echo '<li><a href="' . h($SELF) . '/data/gakudo_' . $GLOBALS['YEAR'] . '.json">両方まとめて（JSON）</a></li></ul>';
+    if ($HK) {
+        echo '<h2>保育所（保育園）' . $GLOBALS['YEAR'] . '年（' . h($HK['as_of']) . '現在）</h2><ul class="plain">';
+        echo '<li><a href="' . h($SELF) . '/data/hoiku_municipalities_' . $GLOBALS['YEAR'] . '.csv">全1,741市区町村の定員・申込者・待機児童（CSV）</a></li>';
+        echo '<li><a href="' . h($SELF) . '/data/hoiku_' . $GLOBALS['YEAR'] . '.json">同じものをJSONで</a></li></ul>';
+        echo '<p class="src">こちらは国が Excel で公表しているものを、住所から引ける形に直したものです。待機児童は「待機児童がいる市区町村」の一覧にある分だけで、一覧に無い市区町村は空欄にしてあります（0人と断定しません）。全国の待機児童は' . n($HKN['waiting']) . '人・' . n($HKN['cities']) . '市区町村です。</p>';
+    }
     echo '<p class="src">CSVはBOM付きUTF-8なので、Excelでそのまま開けます。二次利用は出典（こども家庭庁）を明記してください。当社の加工は「PDFの表をそのまま写す」ことだけで、推定値は一切足していません。</p></div>';
     echo '<div class="panel"><h2 style="margin-top:0">APIで受け取る</h2><p class="src" style="font-size:14px">住所ひとつぶんの判定は <code>' . h($SELF) . '/api/check?q=住所</code> でJSONが返ります。公表されていない市町村は <code>status: "unpublished"</code> で返し、数字は作りません。</p></div>';
     foot_html($D, $SELF); exit;
@@ -310,13 +355,20 @@ if ($path === 'about') {
        . '<li>都道府県の数字には、県内の指定都市・中核市等は含まれていません（国の資料が別に集計しているため）。</li>'
        . '<li>「待機児童」は、国の調査では「利用できなかった児童数」です。申込みをして利用できなかった児童を指します。</li>'
        . '<li>クラブの所在地や空き状況は、国のデータにはありません（自治体ごとの公表になります）。</li></ul></div>';
+    if ($HK) {
+        echo '<div class="panel"><h2 style="margin-top:0">保育所（保育園）の数字について</h2>';
+        echo '<p>こども家庭庁「保育所等関連状況取りまとめ」（' . h($HK['as_of']) . '現在）です。<b>こちらは国が Excel で1,741市区町村ぶんを公表しています。</b>学童とは別の調査なので、画面でも枠を分けています。</p>';
+        echo '<ul class="plain"><li>定員と申込者は、全1,741市区町村について出ます。</li>';
+        echo '<li>待機児童数は「待機児童がいる市区町村」の一覧（' . n($HKN['cities']) . '市区町村・全国' . n($HKN['waiting']) . '人）にある分だけです。一覧に無い市区町村は<b>「一覧に載っていません」</b>と書き、0人とは書きません。</li></ul>';
+        echo '<p class="src">学童は公表がPDFだけで市区町村別がほとんど無いのに対し、保育所はExcelで全市区町村ぶんが出ています。同じ役所の、同じ子育ての統計でも、公表の仕方がここまで違います。</p></div>';
+    }
     echo '<div class="panel"><h2 style="margin-top:0">この仕組みについて</h2><p class="src">PHP 1ファイルとJSONだけで動きます。データベースも外部のサーバーも使いません。年1回、国が新しい調査結果を出したときにJSONを差し替えれば更新できます。</p></div>';
     foot_html($D, $SELF); exit;
 }
 
 // ── トップ（住所入力）と判定結果 ────────────────────────
 if ($q !== '') {
-    $res = judge($D, normalize_address($q, $GSI));
+    $res = judge($D, normalize_address($q, $GSI), $HK);
     $who = $res['city'] ? $res['city'] : ($res['pref'] ? $res['pref'] : '');
     head_html($who . 'の学童保育の待機児童｜' . $SITE,
         $who . 'の放課後児童クラブ（学童保育）の数字。こども家庭庁の全国調査（' . $D['as_of'] . '現在）から、公表されているものだけを出しています。',
@@ -347,6 +399,29 @@ if ($q !== '') {
         echo '<div class="pol" style="border-color:var(--blue);background:var(--blue-l)">住所から自治体を判定できませんでした<small>都道府県から書いた住所でもう一度お試しください。</small></div>';
     }
 
+    // ── 保育所（保育園）。学童とは別の調査なので、枠を分けて出す ──
+    if ($res['hoiku']) {
+        $hk = $res['hoiku'];
+        echo '<h2>' . h($hk['city']) . 'の保育所（保育園）</h2>';
+        if ($hk['waiting'] === null) {
+            echo '<div class="pol ok">' . h($hk['city']) . 'は、待機児童がいる市区町村の一覧に載っていません<small>国が公表しているのは「待機児童がいる市区町村」の一覧（211市区町村）です。載っていない市区町村は、その一覧に含まれていないという意味です。</small></div>';
+        } else {
+            $hw = (int)$hk['waiting'];
+            $hp = $hk['waiting_prev'] === null ? null : (int)$hk['waiting_prev'];
+            $word = ($hp === null) ? '' : ($hw > $hp ? '（' . n($hw - $hp) . '人 増えました）' : ($hw < $hp ? '（' . n($hp - $hw) . '人 減りました）' : '（前年と同じ）'));
+            echo '<div class="pol">' . h($hk['city']) . 'の保育所の待機児童は ' . n($hw) . '人です<small>前年は' . ($hp === null ? '—' : n($hp)) . '人' . $word . '。こども家庭庁「保育所等関連状況取りまとめ」（' . h($HKN['as_of']) . '現在）。</small></div>';
+        }
+        echo '<div class="grid" style="margin-top:12px">'
+           . '<div class="card"><div class="k">保育所の定員</div><div class="v">' . n($hk['capacity_hoikusho']) . '人</div></div>'
+           . '<div class="card"><div class="k">認定こども園（幼保連携型）の定員</div><div class="v">' . n(isset($hk['capacity_kodomoen']) ? $hk['capacity_kodomoen'] : 0) . '人</div></div>'
+           . '<div class="card"><div class="k">申込者数</div><div class="v">' . n($hk['applicants']) . '人</div></div>'
+           . ($hk['waiting'] === null
+               ? '<div class="card none"><div class="k">待機児童</div><div class="v">一覧になし</div><div class="s">国の一覧は待機児童がいる市区町村のみ</div></div>'
+               : '<div class="card ' . ((int)$hk['waiting'] >= 50 ? 'lv3' : ((int)$hk['waiting'] > 0 ? 'lv2' : 'none')) . '"><div class="k">待機児童</div><div class="v">' . n($hk['waiting']) . '人</div><div class="s">前年 ' . ($hk['waiting_prev'] === null ? '—' : n($hk['waiting_prev'])) . '人</div></div>')
+           . '</div>';
+        echo '<p class="src" style="margin-top:8px">保育所は学童（放課後児童クラブ）とは別の調査です。こちらは国が1,741市区町村ぶんをExcelで公表しているので、全国どの市区町村でも定員と申込者が出ます。出典: <a href="' . h($HK['source_url']) . '" target="_blank" rel="noopener">' . h($HK['source']) . '</a>（' . h($HK['as_of']) . '現在）</p>';
+    }
+
     if ($res['pref_area']) {
         $p = $res['pref_area'];
         echo '<h2>' . h($p['name']) . '全体（指定都市・中核市等を除く）</h2><div class="grid">'
@@ -374,6 +449,13 @@ echo '<h2>全国の数字（' . h($D['as_of']) . '現在）</h2><div class="grid
    . '<div class="card lv2"><div class="k">利用できなかった児童（待機児童）</div><div class="v">' . n($nat['waiting']) . '人</div></div></div>';
 echo '<div class="panel"><div class="pol">待機児童の' . $nat['pct'] . '%は、どの市町村のものか分かりません<small>国が市区町村名で公表しているのは、待機児童が<b>50人以上いる' . $nat['w50n'] . '市町村</b>だけです（合計' . n($nat['w50sum']) . '人）。残る<b>' . n($nat['unnamed']) . '人</b>がどこにいるのかは、国の公表資料からは分かりません。調査自体は市区町村ごとに行われています。</small></div>';
 echo '<p class="src" style="margin-top:10px">公表は PDF のみで、Excel も CSV もありません。e-Stat にも載っていません。当社はPDFから表を取り出して <a href="' . h($SELF) . '/data">CSVとJSONで配っています</a>。合計は国の資料の全国値と一致することを確かめています。</p></div>';
+if ($HK) {
+    echo '<h2>保育所（保育園）も同じ住所で出ます</h2><div class="grid">'
+       . '<div class="card"><div class="k">保育所の定員（全国）</div><div class="v">' . n($HKN['capacity']) . '人</div></div>'
+       . '<div class="card"><div class="k">申込者数（全国）</div><div class="v">' . n($HKN['applicants']) . '人</div></div>'
+       . '<div class="card lv2"><div class="k">待機児童（全国）</div><div class="v">' . n($HKN['waiting']) . '人</div><div class="s">' . n($HKN['cities']) . '市区町村</div></div></div>';
+    echo '<p class="src">保育所はこども家庭庁が<b>Excelで全1,741市区町村ぶん</b>を公表しています（' . h($HK['as_of']) . '現在）。学童は同じ役所の調査なのにPDFだけで市区町村別がほとんどありません。公表の仕方が違うと、住民が引けるかどうかも変わります。</p>';
+}
 echo '<h2>都道府県から見る</h2><div class="panel"><p style="font-size:14px;line-height:2">';
 $first = true;
 foreach ($D['areas'] as $r) {
