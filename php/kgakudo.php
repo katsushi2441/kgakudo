@@ -107,6 +107,10 @@ function head_html($title, $desc, $SELF, $SITE, $nav, $canon) {
     echo '<meta name="description" content="' . h($desc) . '">';
     echo '<link rel="canonical" href="' . h($base . $canon) . '">';
     echo '<meta property="og:title" content="' . h($title) . '"><meta property="og:description" content="' . h($desc) . '"><meta property="og:type" content="website">';
+    // OGP画像・Xカード。AI検索（AEO/GEO）にも効くので、どのページでも必ず出す。
+    echo '<meta property="og:image" content="https://kurage.exbridge.jp/kgakudo_data/ogp.png">';
+    echo '<meta property="og:site_name" content="' . h($SITE) . '"><meta property="og:url" content="' . h($base . $canon) . '">';
+    echo '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://kurage.exbridge.jp/kgakudo_data/ogp.png">';
     echo '<style>'
        . ':root{--ink:#12202f;--mut:#5d6b7a;--teal:#0a9a8f;--teal-d:#087f76;--line:#dfe7ec;--bg:#f5f8fa;--red-l:#fdecea;--amber-l:#fdf6e3;--blue:#2c6fbb;--blue-l:#eaf2fb}'
        . '*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 "Noto Sans JP",system-ui,sans-serif}'
@@ -131,6 +135,38 @@ function head_html($title, $desc, $SELF, $SITE, $nav, $canon) {
        . 'footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--mut);font-size:13px;background:#fff}ul.plain{margin:0;padding-left:20px}'
        . '</style>';
     echo '<script>(function(){var s=document.createElement("script");s.src="https://kurage.exbridge.jp/simpletrack.php?url="+encodeURIComponent(location.href)+"&ref="+encodeURIComponent(document.referrer);s.async=true;document.head.appendChild(s)})();</script>';
+    // 構造化データ。AI検索（AEO/GEO）は「何のデータを、どこから取り、どこまで分かるか」を読む。
+    global $D, $NATG;
+    $ld = array(
+        '@context' => 'https://schema.org',
+        '@graph' => array(
+            array('@type' => 'WebApplication', 'name' => $SITE,
+                  'url' => $base . '/', 'applicationCategory' => 'GovernmentApplication',
+                  'operatingSystem' => 'Web', 'inLanguage' => 'ja',
+                  'description' => '住所を入れると、その自治体の放課後児童クラブ（学童保育）のクラブ数・登録児童数・待機児童数を返します。',
+                  'offers' => array('@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'JPY'),
+                  'publisher' => array('@type' => 'Organization', 'name' => '株式会社エクスブリッジ', 'url' => 'https://exbridge.jp/')),
+            array('@type' => 'Dataset', 'name' => '放課後児童クラブ（学童保育）の実施状況 ' . $D['as_of'],
+                  'description' => 'こども家庭庁の全国調査から、都道府県47・指定都市/中核市等82・待機児童50人以上の市町村88件を機械で読める形にしたもの。推定値は含みません。',
+                  'url' => $base . '/data', 'inLanguage' => 'ja',
+                  'temporalCoverage' => $D['as_of'],
+                  'creator' => array('@type' => 'GovernmentOrganization', 'name' => 'こども家庭庁'),
+                  'isBasedOn' => $D['source_url'],
+                  'license' => 'https://www.digital.go.jp/resources/open_data',
+                  'distribution' => array(
+                      array('@type' => 'DataDownload', 'encodingFormat' => 'text/csv', 'contentUrl' => $base . '/data/gakudo_areas_2025.csv'),
+                      array('@type' => 'DataDownload', 'encodingFormat' => 'application/json', 'contentUrl' => $base . '/data/gakudo_2025.json'))),
+            array('@type' => 'FAQPage', 'mainEntity' => array(
+                array('@type' => 'Question', 'name' => '学童保育の待機児童数は、自分の市の数字を調べられますか',
+                      'acceptedAnswer' => array('@type' => 'Answer', 'text' => '指定都市・中核市など82自治体と、待機児童が50人以上いる88市町村については分かります。それ以外の市町村は国が公表していないため、このサイトでは「未公表」と表示します。待機児童がいないという意味ではありません。')),
+                array('@type' => 'Question', 'name' => '全国の学童保育の待機児童は何人ですか',
+                      'acceptedAnswer' => array('@type' => 'Answer', 'text' => $NATG['waiting'] . '人です（' . $D['as_of'] . '現在・こども家庭庁調査）。放課後児童クラブは' . $NATG['clubs'] . 'か所、登録児童数は' . $NATG['registered'] . '人です。')),
+                array('@type' => 'Question', 'name' => 'なぜ市区町村別の数字が分からないのですか',
+                      'acceptedAnswer' => array('@type' => 'Answer', 'text' => '国の公表がPDFのみで、市区町村名で数字が出ているのは待機児童が50人以上いる' . $NATG['w50n'] . '市町村だけだからです。全国' . $NATG['waiting'] . '人のうち' . $NATG['unnamed'] . '人（' . $NATG['pct'] . '%）は、どの市町村のものか国の公表資料からは分かりません。調査自体は市区町村ごとに行われています。')),
+                array('@type' => 'Question', 'name' => 'データはどこから取っていますか',
+                      'acceptedAnswer' => array('@type' => 'Answer', 'text' => 'こども家庭庁「放課後児童健全育成事業（放課後児童クラブ）の実施状況」です。PDFから表を取り出し、合計が国の公表する全国値と一致することを確認しています。推定した数字は含みません。')))),
+        ));
+    echo '<script type="application/ld+json">' . json_encode($ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>';
     echo '</head><body><header><div class="wrap"><a class="brand" href="' . h($SELF) . '/">' . h($SITE) . '</a><nav class="menu">';
     $items = array('' => '住所で調べる', 'waiting50' => '待機が多い市町村', 'data' => 'データ配布', 'about' => 'このデータについて');
     foreach ($items as $k => $label) {
@@ -156,6 +192,7 @@ function search_form($SELF, $value, $label) {
 $path = isset($_SERVER['PATH_INFO']) ? trim($_SERVER['PATH_INFO'], '/') : '';
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $nat = national($D);
+$GLOBALS['NATG'] = $nat;
 
 // データファイルの配布
 if (strpos($path, 'data/') === 0) {
