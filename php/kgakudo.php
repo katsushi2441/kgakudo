@@ -248,9 +248,13 @@ if ($path === 'llms.txt' || $path === 'robots.txt' || $path === 'sitemap.xml') {
     if ($path === 'robots.txt') { header('Content-Type: text/plain; charset=utf-8'); echo "User-agent: *\nAllow: /\nSitemap: $base/sitemap.xml\n"; exit; }
     if ($path === 'sitemap.xml') {
         header('Content-Type: application/xml; charset=utf-8');
+        // lastmod は**データの時点**。毎回 now を入れない（いつも更新されていることになって無視される）。
+        // 2026-09-22 実測: サイトマップ索引29本のうち Google が取得していたのは lastmod のある3本だけ。
+        $LASTMOD = preg_match('/(\d{4})[^\d]*(\d{1,2})/u', (string)($D['as_of'] ?? ''), $mm)
+                 ? sprintf('%04d-%02d-01', $mm[1], $mm[2]) : gmdate('Y-m-d');
         echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-        foreach (array('', 'waiting50', 'data', 'about') as $u) { echo '<url><loc>' . h("$base/$u") . '</loc></url>'; }
-        foreach ($D['areas'] as $r) { echo '<url><loc>' . h("$base/area/" . rawurlencode($r['name'])) . '</loc></url>'; }
+        foreach (array('', 'waiting50', 'data', 'about') as $u) { echo '<url><loc>' . h("$base/$u") . '</loc><lastmod>' . $LASTMOD . '</lastmod><changefreq>monthly</changefreq></url>'; }
+        foreach ($D['areas'] as $r) { echo '<url><loc>' . h("$base/area/" . rawurlencode($r['name'])) . '</loc><lastmod>' . $LASTMOD . '</lastmod><changefreq>monthly</changefreq></url>'; }
         echo '</urlset>'; exit;
     }
     header('Content-Type: text/plain; charset=utf-8');
