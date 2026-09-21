@@ -1,0 +1,1700 @@
+{
+ "year": 2025,
+ "source": "こども家庭庁「放課後児童健全育成事業（放課後児童クラブ）の実施状況」",
+ "source_url": "https://www.cfa.go.jp/policies/kosodateshien/houkago-jidou",
+ "as_of": "2025-05-01",
+ "note": "国の公表はPDFのみで、市区町村別に出ているのは待機児童が50人以上の市町村だけ。それ以外の市町村の数字は公表されていない（当社が推定することはしない）。",
+ "areas": [
+  {
+   "no": 1,
+   "name": "北海道",
+   "kind": "都道府県",
+   "clubs": 601,
+   "registered": 30283,
+   "waiting": 218,
+   "waiting_prev": 166
+  },
+  {
+   "no": 2,
+   "name": "青森県",
+   "kind": "都道府県",
+   "clubs": 184,
+   "registered": 12500,
+   "waiting": 4,
+   "waiting_prev": 0
+  },
+  {
+   "no": 3,
+   "name": "岩手県",
+   "kind": "都道府県",
+   "clubs": 292,
+   "registered": 13565,
+   "waiting": 142,
+   "waiting_prev": 127
+  },
+  {
+   "no": 4,
+   "name": "宮城県",
+   "kind": "都道府県",
+   "clubs": 278,
+   "registered": 17478,
+   "waiting": 300,
+   "waiting_prev": 311
+  },
+  {
+   "no": 5,
+   "name": "秋田県",
+   "kind": "都道府県",
+   "clubs": 178,
+   "registered": 9494,
+   "waiting": 30,
+   "waiting_prev": 17
+  },
+  {
+   "no": 6,
+   "name": "山形県",
+   "kind": "都道府県",
+   "clubs": 242,
+   "registered": 13287,
+   "waiting": 83,
+   "waiting_prev": 97
+  },
+  {
+   "no": 7,
+   "name": "福島県",
+   "kind": "都道府県",
+   "clubs": 240,
+   "registered": 15439,
+   "waiting": 242,
+   "waiting_prev": 419
+  },
+  {
+   "no": 8,
+   "name": "茨城県",
+   "kind": "都道府県",
+   "clubs": 578,
+   "registered": 42011,
+   "waiting": 105,
+   "waiting_prev": 214
+  },
+  {
+   "no": 9,
+   "name": "栃木県",
+   "kind": "都道府県",
+   "clubs": 540,
+   "registered": 23529,
+   "waiting": 125,
+   "waiting_prev": 76
+  },
+  {
+   "no": 10,
+   "name": "群馬県",
+   "kind": "都道府県",
+   "clubs": 392,
+   "registered": 19316,
+   "waiting": 2,
+   "waiting_prev": 7
+  },
+  {
+   "no": 11,
+   "name": "埼玉県",
+   "kind": "都道府県",
+   "clubs": 1044,
+   "registered": 57658,
+   "waiting": 1276,
+   "waiting_prev": 1449
+  },
+  {
+   "no": 12,
+   "name": "千葉県",
+   "kind": "都道府県",
+   "clubs": 807,
+   "registered": 51631,
+   "waiting": 802,
+   "waiting_prev": 831
+  },
+  {
+   "no": 13,
+   "name": "東京都",
+   "kind": "都道府県",
+   "clubs": 1999,
+   "registered": 140589,
+   "waiting": 3360,
+   "waiting_prev": 3731
+  },
+  {
+   "no": 14,
+   "name": "神奈川県",
+   "kind": "都道府県",
+   "clubs": 489,
+   "registered": 27250,
+   "waiting": 880,
+   "waiting_prev": 664
+  },
+  {
+   "no": 15,
+   "name": "新潟県",
+   "kind": "都道府県",
+   "clubs": 346,
+   "registered": 17956,
+   "waiting": 49,
+   "waiting_prev": 6
+  },
+  {
+   "no": 16,
+   "name": "富山県",
+   "kind": "都道府県",
+   "clubs": 173,
+   "registered": 7329,
+   "waiting": 51,
+   "waiting_prev": 60
+  },
+  {
+   "no": 17,
+   "name": "石川県",
+   "kind": "都道府県",
+   "clubs": 241,
+   "registered": 11082,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 18,
+   "name": "福井県",
+   "kind": "都道府県",
+   "clubs": 167,
+   "registered": 8390,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 19,
+   "name": "山梨県",
+   "kind": "都道府県",
+   "clubs": 170,
+   "registered": 10371,
+   "waiting": 20,
+   "waiting_prev": 17
+  },
+  {
+   "no": 20,
+   "name": "長野県",
+   "kind": "都道府県",
+   "clubs": 288,
+   "registered": 19783,
+   "waiting": 33,
+   "waiting_prev": 6
+  },
+  {
+   "no": 21,
+   "name": "岐阜県",
+   "kind": "都道府県",
+   "clubs": 287,
+   "registered": 15711,
+   "waiting": 116,
+   "waiting_prev": 105
+  },
+  {
+   "no": 22,
+   "name": "静岡県",
+   "kind": "都道府県",
+   "clubs": 511,
+   "registered": 24087,
+   "waiting": 266,
+   "waiting_prev": 295
+  },
+  {
+   "no": 23,
+   "name": "愛知県",
+   "kind": "都道府県",
+   "clubs": 700,
+   "registered": 43774,
+   "waiting": 508,
+   "waiting_prev": 393
+  },
+  {
+   "no": 24,
+   "name": "三重県",
+   "kind": "都道府県",
+   "clubs": 442,
+   "registered": 20728,
+   "waiting": 65,
+   "waiting_prev": 54
+  },
+  {
+   "no": 25,
+   "name": "滋賀県",
+   "kind": "都道府県",
+   "clubs": 281,
+   "registered": 17950,
+   "waiting": 87,
+   "waiting_prev": 124
+  },
+  {
+   "no": 26,
+   "name": "京都府",
+   "kind": "都道府県",
+   "clubs": 233,
+   "registered": 16651,
+   "waiting": 113,
+   "waiting_prev": 124
+  },
+  {
+   "no": 27,
+   "name": "大阪府",
+   "kind": "都道府県",
+   "clubs": 355,
+   "registered": 32066,
+   "waiting": 325,
+   "waiting_prev": 352
+  },
+  {
+   "no": 28,
+   "name": "兵庫県",
+   "kind": "都道府県",
+   "clubs": 513,
+   "registered": 26611,
+   "waiting": 668,
+   "waiting_prev": 483
+  },
+  {
+   "no": 29,
+   "name": "奈良県",
+   "kind": "都道府県",
+   "clubs": 217,
+   "registered": 14430,
+   "waiting": 70,
+   "waiting_prev": 58
+  },
+  {
+   "no": 30,
+   "name": "和歌山県",
+   "kind": "都道府県",
+   "clubs": 145,
+   "registered": 6361,
+   "waiting": 43,
+   "waiting_prev": 49
+  },
+  {
+   "no": 31,
+   "name": "鳥取県",
+   "kind": "都道府県",
+   "clubs": 125,
+   "registered": 5698,
+   "waiting": 48,
+   "waiting_prev": 42
+  },
+  {
+   "no": 32,
+   "name": "島根県",
+   "kind": "都道府県",
+   "clubs": 178,
+   "registered": 6670,
+   "waiting": 27,
+   "waiting_prev": 94
+  },
+  {
+   "no": 33,
+   "name": "岡山県",
+   "kind": "都道府県",
+   "clubs": 220,
+   "registered": 10160,
+   "waiting": 24,
+   "waiting_prev": 49
+  },
+  {
+   "no": 34,
+   "name": "広島県",
+   "kind": "都道府県",
+   "clubs": 277,
+   "registered": 14218,
+   "waiting": 129,
+   "waiting_prev": 104
+  },
+  {
+   "no": 35,
+   "name": "山口県",
+   "kind": "都道府県",
+   "clubs": 265,
+   "registered": 14790,
+   "waiting": 206,
+   "waiting_prev": 403
+  },
+  {
+   "no": 36,
+   "name": "徳島県",
+   "kind": "都道府県",
+   "clubs": 153,
+   "registered": 8213,
+   "waiting": 66,
+   "waiting_prev": 64
+  },
+  {
+   "no": 37,
+   "name": "香川県",
+   "kind": "都道府県",
+   "clubs": 138,
+   "registered": 8817,
+   "waiting": 19,
+   "waiting_prev": 97
+  },
+  {
+   "no": 38,
+   "name": "愛媛県",
+   "kind": "都道府県",
+   "clubs": 179,
+   "registered": 9492,
+   "waiting": 256,
+   "waiting_prev": 189
+  },
+  {
+   "no": 39,
+   "name": "高知県",
+   "kind": "都道府県",
+   "clubs": 101,
+   "registered": 3618,
+   "waiting": 167,
+   "waiting_prev": 121
+  },
+  {
+   "no": 40,
+   "name": "福岡県",
+   "kind": "都道府県",
+   "clubs": 446,
+   "registered": 33220,
+   "waiting": 435,
+   "waiting_prev": 473
+  },
+  {
+   "no": 41,
+   "name": "佐賀県",
+   "kind": "都道府県",
+   "clubs": 288,
+   "registered": 12496,
+   "waiting": 229,
+   "waiting_prev": 152
+  },
+  {
+   "no": 42,
+   "name": "長崎県",
+   "kind": "都道府県",
+   "clubs": 253,
+   "registered": 10876,
+   "waiting": 49,
+   "waiting_prev": 79
+  },
+  {
+   "no": 43,
+   "name": "熊本県",
+   "kind": "都道府県",
+   "clubs": 338,
+   "registered": 14677,
+   "waiting": 110,
+   "waiting_prev": 153
+  },
+  {
+   "no": 44,
+   "name": "大分県",
+   "kind": "都道府県",
+   "clubs": 237,
+   "registered": 9783,
+   "waiting": 43,
+   "waiting_prev": 69
+  },
+  {
+   "no": 45,
+   "name": "宮崎県",
+   "kind": "都道府県",
+   "clubs": 240,
+   "registered": 9485,
+   "waiting": 181,
+   "waiting_prev": 216
+  },
+  {
+   "no": 46,
+   "name": "鹿児島県",
+   "kind": "都道府県",
+   "clubs": 444,
+   "registered": 18048,
+   "waiting": 82,
+   "waiting_prev": 84
+  },
+  {
+   "no": 47,
+   "name": "沖縄県",
+   "kind": "都道府県",
+   "clubs": 513,
+   "registered": 21552,
+   "waiting": 718,
+   "waiting_prev": 846
+  },
+  {
+   "no": 48,
+   "name": "札幌市",
+   "kind": "指定都市・中核市等",
+   "clubs": 248,
+   "registered": 26730,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 49,
+   "name": "仙台市",
+   "kind": "指定都市・中核市等",
+   "clubs": 244,
+   "registered": 16843,
+   "waiting": 20,
+   "waiting_prev": 4
+  },
+  {
+   "no": 50,
+   "name": "さいたま市",
+   "kind": "指定都市・中核市等",
+   "clubs": 337,
+   "registered": 14116,
+   "waiting": 197,
+   "waiting_prev": 288
+  },
+  {
+   "no": 51,
+   "name": "千葉市",
+   "kind": "指定都市・中核市等",
+   "clubs": 205,
+   "registered": 14892,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 52,
+   "name": "横浜市",
+   "kind": "指定都市・中核市等",
+   "clubs": 571,
+   "registered": 48691,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 53,
+   "name": "川崎市",
+   "kind": "指定都市・中核市等",
+   "clubs": 141,
+   "registered": 18829,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 54,
+   "name": "相模原市",
+   "kind": "指定都市・中核市等",
+   "clubs": 126,
+   "registered": 7630,
+   "waiting": 157,
+   "waiting_prev": 103
+  },
+  {
+   "no": 55,
+   "name": "新潟市",
+   "kind": "指定都市・中核市等",
+   "clubs": 185,
+   "registered": 13378,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 56,
+   "name": "静岡市",
+   "kind": "指定都市・中核市等",
+   "clubs": 98,
+   "registered": 6196,
+   "waiting": 12,
+   "waiting_prev": 51
+  },
+  {
+   "no": 57,
+   "name": "浜松市",
+   "kind": "指定都市・中核市等",
+   "clubs": 180,
+   "registered": 7890,
+   "waiting": 189,
+   "waiting_prev": 202
+  },
+  {
+   "no": 58,
+   "name": "名古屋市",
+   "kind": "指定都市・中核市等",
+   "clubs": 230,
+   "registered": 9956,
+   "waiting": 49,
+   "waiting_prev": 34
+  },
+  {
+   "no": 59,
+   "name": "京都市",
+   "kind": "指定都市・中核市等",
+   "clubs": 223,
+   "registered": 17602,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 60,
+   "name": "大阪市",
+   "kind": "指定都市・中核市等",
+   "clubs": 186,
+   "registered": 6261,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 61,
+   "name": "堺市",
+   "kind": "指定都市・中核市等",
+   "clubs": 93,
+   "registered": 9196,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 62,
+   "name": "神戸市",
+   "kind": "指定都市・中核市等",
+   "clubs": 253,
+   "registered": 19623,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 63,
+   "name": "岡山市",
+   "kind": "指定都市・中核市等",
+   "clubs": 106,
+   "registered": 10373,
+   "waiting": 53,
+   "waiting_prev": 236
+  },
+  {
+   "no": 64,
+   "name": "広島市",
+   "kind": "指定都市・中核市等",
+   "clubs": 226,
+   "registered": 13733,
+   "waiting": 47,
+   "waiting_prev": 96
+  },
+  {
+   "no": 65,
+   "name": "北九州市",
+   "kind": "指定都市・中核市等",
+   "clubs": 130,
+   "registered": 13398,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 66,
+   "name": "福岡市",
+   "kind": "指定都市・中核市等",
+   "clubs": 149,
+   "registered": 21109,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 67,
+   "name": "熊本市",
+   "kind": "指定都市・中核市等",
+   "clubs": 95,
+   "registered": 8082,
+   "waiting": 0,
+   "waiting_prev": 3
+  },
+  {
+   "no": 68,
+   "name": "函館市",
+   "kind": "指定都市・中核市等",
+   "clubs": 70,
+   "registered": 3002,
+   "waiting": 9,
+   "waiting_prev": 2
+  },
+  {
+   "no": 69,
+   "name": "旭川市",
+   "kind": "指定都市・中核市等",
+   "clubs": 99,
+   "registered": 3576,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 70,
+   "name": "青森市",
+   "kind": "指定都市・中核市等",
+   "clubs": 50,
+   "registered": 3551,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 71,
+   "name": "八戸市",
+   "kind": "指定都市・中核市等",
+   "clubs": 52,
+   "registered": 2168,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 72,
+   "name": "盛岡市",
+   "kind": "指定都市・中核市等",
+   "clubs": 70,
+   "registered": 2877,
+   "waiting": 47,
+   "waiting_prev": 10
+  },
+  {
+   "no": 73,
+   "name": "秋田市",
+   "kind": "指定都市・中核市等",
+   "clubs": 61,
+   "registered": 2532,
+   "waiting": 38,
+   "waiting_prev": 15
+  },
+  {
+   "no": 74,
+   "name": "山形市",
+   "kind": "指定都市・中核市等",
+   "clubs": 86,
+   "registered": 4054,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 75,
+   "name": "福島市",
+   "kind": "指定都市・中核市等",
+   "clubs": 84,
+   "registered": 3899,
+   "waiting": 2,
+   "waiting_prev": 3
+  },
+  {
+   "no": 76,
+   "name": "郡山市",
+   "kind": "指定都市・中核市等",
+   "clubs": 78,
+   "registered": 4963,
+   "waiting": 49,
+   "waiting_prev": 72
+  },
+  {
+   "no": 77,
+   "name": "いわき市",
+   "kind": "指定都市・中核市等",
+   "clubs": 89,
+   "registered": 3798,
+   "waiting": 13,
+   "waiting_prev": 35
+  },
+  {
+   "no": 78,
+   "name": "水戸市",
+   "kind": "指定都市・中核市等",
+   "clubs": 56,
+   "registered": 5847,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 79,
+   "name": "宇都宮市",
+   "kind": "指定都市・中核市等",
+   "clubs": 70,
+   "registered": 7341,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 80,
+   "name": "前橋市",
+   "kind": "指定都市・中核市等",
+   "clubs": 85,
+   "registered": 5587,
+   "waiting": 7,
+   "waiting_prev": 14
+  },
+  {
+   "no": 81,
+   "name": "高崎市",
+   "kind": "指定都市・中核市等",
+   "clubs": 105,
+   "registered": 4551,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 82,
+   "name": "川越市",
+   "kind": "指定都市・中核市等",
+   "clubs": 36,
+   "registered": 3922,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 83,
+   "name": "川口市",
+   "kind": "指定都市・中核市等",
+   "clubs": 52,
+   "registered": 6277,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 84,
+   "name": "越谷市",
+   "kind": "指定都市・中核市等",
+   "clubs": 61,
+   "registered": 3711,
+   "waiting": 208,
+   "waiting_prev": 395
+  },
+  {
+   "no": 85,
+   "name": "船橋市",
+   "kind": "指定都市・中核市等",
+   "clubs": 103,
+   "registered": 5880,
+   "waiting": 157,
+   "waiting_prev": 219
+  },
+  {
+   "no": 86,
+   "name": "柏市",
+   "kind": "指定都市・中核市等",
+   "clubs": 45,
+   "registered": 4931,
+   "waiting": 147,
+   "waiting_prev": 131
+  },
+  {
+   "no": 87,
+   "name": "八王子市",
+   "kind": "指定都市・中核市等",
+   "clubs": 91,
+   "registered": 6656,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 88,
+   "name": "横須賀市",
+   "kind": "指定都市・中核市等",
+   "clubs": 83,
+   "registered": 2866,
+   "waiting": 30,
+   "waiting_prev": 44
+  },
+  {
+   "no": 89,
+   "name": "富山市",
+   "kind": "指定都市・中核市等",
+   "clubs": 135,
+   "registered": 6929,
+   "waiting": 19,
+   "waiting_prev": 42
+  },
+  {
+   "no": 90,
+   "name": "金沢市",
+   "kind": "指定都市・中核市等",
+   "clubs": 111,
+   "registered": 5933,
+   "waiting": 22,
+   "waiting_prev": 24
+  },
+  {
+   "no": 91,
+   "name": "福井市",
+   "kind": "指定都市・中核市等",
+   "clubs": 85,
+   "registered": 3527,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 92,
+   "name": "甲府市",
+   "kind": "指定都市・中核市等",
+   "clubs": 39,
+   "registered": 1875,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 93,
+   "name": "長野市",
+   "kind": "指定都市・中核市等",
+   "clubs": 82,
+   "registered": 9190,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 94,
+   "name": "松本市",
+   "kind": "指定都市・中核市等",
+   "clubs": 40,
+   "registered": 3943,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 95,
+   "name": "岐阜市",
+   "kind": "指定都市・中核市等",
+   "clubs": 46,
+   "registered": 4041,
+   "waiting": 26,
+   "waiting_prev": 46
+  },
+  {
+   "no": 96,
+   "name": "豊橋市",
+   "kind": "指定都市・中核市等",
+   "clubs": 105,
+   "registered": 3979,
+   "waiting": 52,
+   "waiting_prev": 70
+  },
+  {
+   "no": 97,
+   "name": "岡崎市",
+   "kind": "指定都市・中核市等",
+   "clubs": 55,
+   "registered": 3540,
+   "waiting": 142,
+   "waiting_prev": 153
+  },
+  {
+   "no": 98,
+   "name": "一宮市",
+   "kind": "指定都市・中核市等",
+   "clubs": 60,
+   "registered": 3592,
+   "waiting": 9,
+   "waiting_prev": 20
+  },
+  {
+   "no": 99,
+   "name": "豊田市",
+   "kind": "指定都市・中核市等",
+   "clubs": 75,
+   "registered": 4685,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 100,
+   "name": "大津市",
+   "kind": "指定都市・中核市等",
+   "clubs": 76,
+   "registered": 4826,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 101,
+   "name": "豊中市",
+   "kind": "指定都市・中核市等",
+   "clubs": 38,
+   "registered": 5364,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 102,
+   "name": "吹田市",
+   "kind": "指定都市・中核市等",
+   "clubs": 35,
+   "registered": 5926,
+   "waiting": 6,
+   "waiting_prev": 97
+  },
+  {
+   "no": 103,
+   "name": "高槻市",
+   "kind": "指定都市・中核市等",
+   "clubs": 81,
+   "registered": 4237,
+   "waiting": 17,
+   "waiting_prev": 34
+  },
+  {
+   "no": 104,
+   "name": "枚方市",
+   "kind": "指定都市・中核市等",
+   "clubs": 44,
+   "registered": 4445,
+   "waiting": 4,
+   "waiting_prev": 2
+  },
+  {
+   "no": 105,
+   "name": "八尾市",
+   "kind": "指定都市・中核市等",
+   "clubs": 32,
+   "registered": 4189,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 106,
+   "name": "寝屋川市",
+   "kind": "指定都市・中核市等",
+   "clubs": 23,
+   "registered": 2354,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 107,
+   "name": "東大阪市",
+   "kind": "指定都市・中核市等",
+   "clubs": 57,
+   "registered": 4663,
+   "waiting": 197,
+   "waiting_prev": 136
+  },
+  {
+   "no": 108,
+   "name": "姫路市",
+   "kind": "指定都市・中核市等",
+   "clubs": 129,
+   "registered": 4736,
+   "waiting": 255,
+   "waiting_prev": 225
+  },
+  {
+   "no": 109,
+   "name": "尼崎市",
+   "kind": "指定都市・中核市等",
+   "clubs": 82,
+   "registered": 3447,
+   "waiting": 323,
+   "waiting_prev": 269
+  },
+  {
+   "no": 110,
+   "name": "明石市",
+   "kind": "指定都市・中核市等",
+   "clubs": 28,
+   "registered": 4483,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 111,
+   "name": "西宮市",
+   "kind": "指定都市・中核市等",
+   "clubs": 122,
+   "registered": 5056,
+   "waiting": 218,
+   "waiting_prev": 174
+  },
+  {
+   "no": 112,
+   "name": "奈良市",
+   "kind": "指定都市・中核市等",
+   "clubs": 47,
+   "registered": 4817,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 113,
+   "name": "和歌山市",
+   "kind": "指定都市・中核市等",
+   "clubs": 103,
+   "registered": 3887,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 114,
+   "name": "鳥取市",
+   "kind": "指定都市・中核市等",
+   "clubs": 78,
+   "registered": 3288,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 115,
+   "name": "松江市",
+   "kind": "指定都市・中核市等",
+   "clubs": 85,
+   "registered": 3369,
+   "waiting": 49,
+   "waiting_prev": 46
+  },
+  {
+   "no": 116,
+   "name": "倉敷市",
+   "kind": "指定都市・中核市等",
+   "clubs": 65,
+   "registered": 6512,
+   "waiting": 32,
+   "waiting_prev": 45
+  },
+  {
+   "no": 117,
+   "name": "呉市",
+   "kind": "指定都市・中核市等",
+   "clubs": 41,
+   "registered": 2789,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 118,
+   "name": "福山市",
+   "kind": "指定都市・中核市等",
+   "clubs": 72,
+   "registered": 6850,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 119,
+   "name": "下関市",
+   "kind": "指定都市・中核市等",
+   "clubs": 38,
+   "registered": 2511,
+   "waiting": 86,
+   "waiting_prev": 217
+  },
+  {
+   "no": 120,
+   "name": "高松市",
+   "kind": "指定都市・中核市等",
+   "clubs": 90,
+   "registered": 5460,
+   "waiting": 140,
+   "waiting_prev": 93
+  },
+  {
+   "no": 121,
+   "name": "松山市",
+   "kind": "指定都市・中核市等",
+   "clubs": 58,
+   "registered": 6673,
+   "waiting": 132,
+   "waiting_prev": 130
+  },
+  {
+   "no": 122,
+   "name": "高知市",
+   "kind": "指定都市・中核市等",
+   "clubs": 88,
+   "registered": 3992,
+   "waiting": 56,
+   "waiting_prev": 119
+  },
+  {
+   "no": 123,
+   "name": "久留米市",
+   "kind": "指定都市・中核市等",
+   "clubs": 48,
+   "registered": 4263,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 124,
+   "name": "長崎市",
+   "kind": "指定都市・中核市等",
+   "clubs": 96,
+   "registered": 6993,
+   "waiting": 0,
+   "waiting_prev": 0
+  },
+  {
+   "no": 125,
+   "name": "佐世保市",
+   "kind": "指定都市・中核市等",
+   "clubs": 74,
+   "registered": 2708,
+   "waiting": 0,
+   "waiting_prev": 6
+  },
+  {
+   "no": 126,
+   "name": "大分市",
+   "kind": "指定都市・中核市等",
+   "clubs": 71,
+   "registered": 5952,
+   "waiting": 19,
+   "waiting_prev": 8
+  },
+  {
+   "no": 127,
+   "name": "宮崎市",
+   "kind": "指定都市・中核市等",
+   "clubs": 63,
+   "registered": 4884,
+   "waiting": 175,
+   "waiting_prev": 173
+  },
+  {
+   "no": 128,
+   "name": "鹿児島市",
+   "kind": "指定都市・中核市等",
+   "clubs": 231,
+   "registered": 9317,
+   "waiting": 41,
+   "waiting_prev": 59
+  },
+  {
+   "no": 129,
+   "name": "那覇市",
+   "kind": "指定都市・中核市等",
+   "clubs": 120,
+   "registered": 5780,
+   "waiting": 107,
+   "waiting_prev": 71
+  }
+ ],
+ "waiting50": [
+  {
+   "no": 1,
+   "pref": "東京都",
+   "city": "杉並区",
+   "waiting": 481
+  },
+  {
+   "no": 2,
+   "pref": "兵庫県",
+   "city": "宝塚市",
+   "waiting": 329
+  },
+  {
+   "no": 3,
+   "pref": "兵庫県",
+   "city": "尼崎市",
+   "waiting": 323
+  },
+  {
+   "no": 4,
+   "pref": "千葉県",
+   "city": "市川市",
+   "waiting": 283
+  },
+  {
+   "no": 5,
+   "pref": "東京都",
+   "city": "中央区",
+   "waiting": 275
+  },
+  {
+   "no": 6,
+   "pref": "神奈川県",
+   "city": "茅ヶ崎市",
+   "waiting": 257
+  },
+  {
+   "no": 7,
+   "pref": "兵庫県",
+   "city": "姫路市",
+   "waiting": 255
+  },
+  {
+   "no": 8,
+   "pref": "神奈川県",
+   "city": "藤沢市",
+   "waiting": 254
+  },
+  {
+   "no": 9,
+   "pref": "東京都",
+   "city": "目黒区",
+   "waiting": 246
+  },
+  {
+   "no": 10,
+   "pref": "埼玉県",
+   "city": "所沢市",
+   "waiting": 227
+  },
+  {
+   "no": 11,
+   "pref": "東京都",
+   "city": "葛飾区",
+   "waiting": 227
+  },
+  {
+   "no": 12,
+   "pref": "東京都",
+   "city": "立川市",
+   "waiting": 219
+  },
+  {
+   "no": 13,
+   "pref": "兵庫県",
+   "city": "西宮市",
+   "waiting": 218
+  },
+  {
+   "no": 14,
+   "pref": "埼玉県",
+   "city": "朝霞市",
+   "waiting": 209
+  },
+  {
+   "no": 15,
+   "pref": "埼玉県",
+   "city": "越谷市",
+   "waiting": 208
+  },
+  {
+   "no": 16,
+   "pref": "埼玉県",
+   "city": "さいたま市",
+   "waiting": 197
+  },
+  {
+   "no": 17,
+   "pref": "大阪府",
+   "city": "東大阪市",
+   "waiting": 197
+  },
+  {
+   "no": 18,
+   "pref": "静岡県",
+   "city": "浜松市",
+   "waiting": 189
+  },
+  {
+   "no": 19,
+   "pref": "東京都",
+   "city": "足立区",
+   "waiting": 179
+  },
+  {
+   "no": 20,
+   "pref": "宮崎県",
+   "city": "宮崎市",
+   "waiting": 175
+  },
+  {
+   "no": 21,
+   "pref": "東京都",
+   "city": "東村山市",
+   "waiting": 158
+  },
+  {
+   "no": 22,
+   "pref": "千葉県",
+   "city": "船橋市",
+   "waiting": 157
+  },
+  {
+   "no": 23,
+   "pref": "神奈川県",
+   "city": "相模原市",
+   "waiting": 157
+  },
+  {
+   "no": 24,
+   "pref": "東京都",
+   "city": "大田区",
+   "waiting": 155
+  },
+  {
+   "no": 25,
+   "pref": "千葉県",
+   "city": "柏市",
+   "waiting": 147
+  },
+  {
+   "no": 26,
+   "pref": "東京都",
+   "city": "東久留米市",
+   "waiting": 147
+  },
+  {
+   "no": 27,
+   "pref": "愛媛県",
+   "city": "四国中央市",
+   "waiting": 146
+  },
+  {
+   "no": 28,
+   "pref": "岩手県",
+   "city": "奥州市",
+   "waiting": 142
+  },
+  {
+   "no": 29,
+   "pref": "愛知県",
+   "city": "岡崎市",
+   "waiting": 142
+  },
+  {
+   "no": 30,
+   "pref": "東京都",
+   "city": "稲城市",
+   "waiting": 141
+  },
+  {
+   "no": 31,
+   "pref": "香川県",
+   "city": "高松市",
+   "waiting": 140
+  },
+  {
+   "no": 32,
+   "pref": "大阪府",
+   "city": "岸和田市",
+   "waiting": 136
+  },
+  {
+   "no": 33,
+   "pref": "愛媛県",
+   "city": "松山市",
+   "waiting": 132
+  },
+  {
+   "no": 34,
+   "pref": "千葉県",
+   "city": "八千代市",
+   "waiting": 130
+  },
+  {
+   "no": 35,
+   "pref": "神奈川県",
+   "city": "伊勢原市",
+   "waiting": 125
+  },
+  {
+   "no": 36,
+   "pref": "東京都",
+   "city": "多摩市",
+   "waiting": 119
+  },
+  {
+   "no": 37,
+   "pref": "東京都",
+   "city": "狛江市",
+   "waiting": 116
+  },
+  {
+   "no": 38,
+   "pref": "兵庫県",
+   "city": "川西市",
+   "waiting": 111
+  },
+  {
+   "no": 39,
+   "pref": "埼玉県",
+   "city": "春日部市",
+   "waiting": 110
+  },
+  {
+   "no": 40,
+   "pref": "愛知県",
+   "city": "豊川市",
+   "waiting": 107
+  },
+  {
+   "no": 41,
+   "pref": "沖縄県",
+   "city": "那覇市",
+   "waiting": 107
+  },
+  {
+   "no": 42,
+   "pref": "愛知県",
+   "city": "西尾市",
+   "waiting": 103
+  },
+  {
+   "no": 43,
+   "pref": "福島県",
+   "city": "喜多方市",
+   "waiting": 101
+  },
+  {
+   "no": 44,
+   "pref": "宮崎県",
+   "city": "日向市",
+   "waiting": 101
+  },
+  {
+   "no": 45,
+   "pref": "山口県",
+   "city": "山口市",
+   "waiting": 99
+  },
+  {
+   "no": 46,
+   "pref": "埼玉県",
+   "city": "狭山市",
+   "waiting": 98
+  },
+  {
+   "no": 47,
+   "pref": "埼玉県",
+   "city": "熊谷市",
+   "waiting": 96
+  },
+  {
+   "no": 48,
+   "pref": "東京都",
+   "city": "清瀬市",
+   "waiting": 96
+  },
+  {
+   "no": 49,
+   "pref": "宮城県",
+   "city": "亘理町",
+   "waiting": 90
+  },
+  {
+   "no": 50,
+   "pref": "埼玉県",
+   "city": "入間市",
+   "waiting": 86
+  },
+  {
+   "no": 51,
+   "pref": "埼玉県",
+   "city": "八潮市",
+   "waiting": 86
+  },
+  {
+   "no": 52,
+   "pref": "山口県",
+   "city": "下関市",
+   "waiting": 86
+  },
+  {
+   "no": 53,
+   "pref": "沖縄県",
+   "city": "読谷村",
+   "waiting": 83
+  },
+  {
+   "no": 54,
+   "pref": "北海道",
+   "city": "江別市",
+   "waiting": 82
+  },
+  {
+   "no": 55,
+   "pref": "埼玉県",
+   "city": "東松山市",
+   "waiting": 82
+  },
+  {
+   "no": 56,
+   "pref": "佐賀県",
+   "city": "唐津市",
+   "waiting": 79
+  },
+  {
+   "no": 57,
+   "pref": "沖縄県",
+   "city": "沖縄市",
+   "waiting": 79
+  },
+  {
+   "no": 58,
+   "pref": "沖縄県",
+   "city": "南風原町",
+   "waiting": 78
+  },
+  {
+   "no": 59,
+   "pref": "神奈川県",
+   "city": "座間市",
+   "waiting": 77
+  },
+  {
+   "no": 60,
+   "pref": "愛知県",
+   "city": "長久手市",
+   "waiting": 77
+  },
+  {
+   "no": 61,
+   "pref": "京都府",
+   "city": "京田辺市",
+   "waiting": 77
+  },
+  {
+   "no": 62,
+   "pref": "千葉県",
+   "city": "印西市",
+   "waiting": 76
+  },
+  {
+   "no": 63,
+   "pref": "東京都",
+   "city": "武蔵村山市",
+   "waiting": 74
+  },
+  {
+   "no": 64,
+   "pref": "沖縄県",
+   "city": "宮古島市",
+   "waiting": 74
+  },
+  {
+   "no": 65,
+   "pref": "沖縄県",
+   "city": "八重瀬町",
+   "waiting": 73
+  },
+  {
+   "no": 66,
+   "pref": "東京都",
+   "city": "東大和市",
+   "waiting": 71
+  },
+  {
+   "no": 67,
+   "pref": "東京都",
+   "city": "西東京市",
+   "waiting": 70
+  },
+  {
+   "no": 68,
+   "pref": "大阪府",
+   "city": "貝塚市",
+   "waiting": 70
+  },
+  {
+   "no": 69,
+   "pref": "宮城県",
+   "city": "石巻市",
+   "waiting": 69
+  },
+  {
+   "no": 70,
+   "pref": "東京都",
+   "city": "文京区",
+   "waiting": 68
+  },
+  {
+   "no": 71,
+   "pref": "栃木県",
+   "city": "栃木市",
+   "waiting": 66
+  },
+  {
+   "no": 72,
+   "pref": "沖縄県",
+   "city": "糸満市",
+   "waiting": 66
+  },
+  {
+   "no": 73,
+   "pref": "東京都",
+   "city": "青梅市",
+   "waiting": 64
+  },
+  {
+   "no": 74,
+   "pref": "広島県",
+   "city": "尾道市",
+   "waiting": 64
+  },
+  {
+   "no": 75,
+   "pref": "東京都",
+   "city": "町田市",
+   "waiting": 63
+  },
+  {
+   "no": 76,
+   "pref": "東京都",
+   "city": "調布市",
+   "waiting": 60
+  },
+  {
+   "no": 77,
+   "pref": "東京都",
+   "city": "昭島市",
+   "waiting": 56
+  },
+  {
+   "no": 78,
+   "pref": "神奈川県",
+   "city": "寒川町",
+   "waiting": 56
+  },
+  {
+   "no": 79,
+   "pref": "高知県",
+   "city": "高知市",
+   "waiting": 56
+  },
+  {
+   "no": 80,
+   "pref": "福岡県",
+   "city": "須恵町",
+   "waiting": 56
+  },
+  {
+   "no": 81,
+   "pref": "福岡県",
+   "city": "粕屋町",
+   "waiting": 56
+  },
+  {
+   "no": 82,
+   "pref": "沖縄県",
+   "city": "宜野湾市",
+   "waiting": 56
+  },
+  {
+   "no": 83,
+   "pref": "兵庫県",
+   "city": "三木市",
+   "waiting": 55
+  },
+  {
+   "no": 84,
+   "pref": "東京都",
+   "city": "台東区",
+   "waiting": 54
+  },
+  {
+   "no": 85,
+   "pref": "岡山県",
+   "city": "岡山市",
+   "waiting": 53
+  },
+  {
+   "no": 86,
+   "pref": "愛知県",
+   "city": "豊橋市",
+   "waiting": 52
+  },
+  {
+   "no": 87,
+   "pref": "愛知県",
+   "city": "尾張旭市",
+   "waiting": 51
+  },
+  {
+   "no": 88,
+   "pref": "北海道",
+   "city": "苫小牧市",
+   "waiting": 50
+  }
+ ]
+}
