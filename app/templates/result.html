@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}{{ res.city or res.pref or '' }}の学童保育の待機児童｜{{ site }}{% endblock %}
+{% block desc %}{{ res.city or res.pref }}の放課後児童クラブ（学童保育）の数字。こども家庭庁の全国調査（{{ res.as_of }}現在）から、公表されているものだけを出しています。{% endblock %}
+{% block body %}
+<h1>{{ res.city or res.pref or '判定できませんでした' }}の学童保育</h1>
+<p class="src">住所: <b>{{ res.address }}</b>／{{ res.as_of }}現在</p>
+
+{% if res.status == 'city' %}
+<div class="pol">{{ res.area.name }}の待機児童は {{ '{:,}'.format(res.area.waiting) }}人です
+<small>前年は{{ '{:,}'.format(res.area.waiting_prev) }}人{% if res.area.waiting > res.area.waiting_prev %}（{{ res.area.waiting - res.area.waiting_prev }}人 増えました）{% elif res.area.waiting < res.area.waiting_prev %}（{{ res.area.waiting_prev - res.area.waiting }}人 減りました）{% else %}（前年と同じ）{% endif %}。{{ res.area.name }}は指定都市・中核市等なので、国の資料に市単位の数字が出ています。</small></div>
+<div class="grid" style="margin-top:12px">
+<div class="card"><div class="k">放課後児童クラブ</div><div class="v">{{ '{:,}'.format(res.area.clubs) }}か所</div></div>
+<div class="card"><div class="k">登録児童数</div><div class="v">{{ '{:,}'.format(res.area.registered) }}人</div></div>
+<div class="card {{ 'lv3' if res.area.waiting >= 100 else 'lv2' if res.area.waiting > 0 else 'none' }}"><div class="k">待機児童</div><div class="v">{{ '{:,}'.format(res.area.waiting) }}人</div><div class="s">前年 {{ '{:,}'.format(res.area.waiting_prev) }}人</div></div>
+</div>
+
+{% elif res.status == 'listed' %}
+<div class="pol">{{ res.listed.city }}の待機児童は {{ '{:,}'.format(res.listed.waiting) }}人です
+<small>全国で待機児童が多い順に<b>{{ res.listed.no }}番目</b>です。国が市区町村名で公表しているのは待機児童が50人以上いる市町村だけで、{{ res.listed.city }}はそこに載っています。<b>クラブ数と登録児童数は、この市町村については公表されていません。</b></small></div>
+<div class="grid" style="margin-top:12px">
+<div class="card {{ 'lv3' if res.listed.waiting >= 100 else 'lv2' }}"><div class="k">待機児童</div><div class="v">{{ '{:,}'.format(res.listed.waiting) }}人</div><div class="s">全国{{ res.listed.no }}位</div></div>
+<div class="card none"><div class="k">放課後児童クラブ</div><div class="v">未公表</div><div class="s">国の資料に市町村別がありません</div></div>
+<div class="card none"><div class="k">登録児童数</div><div class="v">未公表</div><div class="s">同上</div></div>
+</div>
+
+{% elif res.status == 'unpublished' %}
+<div class="pol" style="border-color:var(--blue);background:var(--blue-l)">{{ res.city or res.pref }}の数字は、国が公表していません
+<small><b>待機児童がいないという意味ではありません。</b>国が市区町村名で公表しているのは、待機児童が50人以上いる{{ nat.waiting50_count }}市町村だけです。49人以下の市町村は名前も数字も出ていません。調査自体は市区町村ごとに行われています。</small></div>
+{% else %}
+<div class="pol" style="border-color:var(--blue);background:var(--blue-l)">住所から自治体を判定できませんでした
+<small>都道府県から書いた住所でもう一度お試しください。</small></div>
+{% endif %}
+
+{% if res.pref_area %}
+<h2>{{ res.pref_area.name }}全体（指定都市・中核市等を除く）</h2>
+<div class="grid">
+<div class="card"><div class="k">放課後児童クラブ</div><div class="v">{{ '{:,}'.format(res.pref_area.clubs) }}か所</div></div>
+<div class="card"><div class="k">登録児童数</div><div class="v">{{ '{:,}'.format(res.pref_area.registered) }}人</div></div>
+<div class="card {{ 'lv2' if res.pref_area.waiting else 'none' }}"><div class="k">待機児童</div><div class="v">{{ '{:,}'.format(res.pref_area.waiting) }}人</div><div class="s">前年 {{ '{:,}'.format(res.pref_area.waiting_prev) }}人</div></div>
+</div>
+<p class="src" style="margin-top:8px">この数字には、県内の指定都市・中核市等は含まれていません（国の資料が別に集計しているため）。<a href="{{ base }}/area/{{ res.pref_area.name|urlencode }}">{{ res.pref_area.name }}のページ</a></p>
+{% endif %}
+
+<div class="panel" style="margin-top:20px">
+<p style="display:flex;gap:8px;flex-wrap:wrap;margin:0"><a class="btn ghost" href="{{ base }}/">別の住所で調べる</a> <a class="btn ghost" href="{{ base }}/data">CSV・JSONで受け取る</a> <a class="btn ghost" href="{{ base }}/about">このデータについて</a></p>
+</div>
+{% endblock %}

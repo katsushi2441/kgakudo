@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}学童保育の待機児童を住所から調べる｜{{ site }}{% endblock %}
+{% block body %}
+<h1>学童保育の待機児童を、住所から調べる</h1>
+<p class="lead">住所を入れると、その自治体の放課後児童クラブ（学童保育）の<b>クラブ数・登録児童数・待機児童数</b>を返します。数字はこども家庭庁の全国調査（{{ nat.as_of }}現在）です。</p>
+<div class="panel">
+<form action="{{ base }}/" method="get" style="display:flex;gap:8px;flex-wrap:wrap">
+<input type="text" name="q" placeholder="例: 愛知県名古屋市瑞穂区内浜町" required>
+<button class="btn" type="submit">調べる</button>
+</form>
+</div>
+<h2>全国の数字（{{ nat.as_of }}現在）</h2>
+<div class="grid">
+<div class="card"><div class="k">放課後児童クラブ</div><div class="v">{{ '{:,}'.format(nat.clubs) }}か所</div></div>
+<div class="card"><div class="k">登録児童数</div><div class="v">{{ '{:,}'.format(nat.registered) }}人</div><div class="s">過去最高</div></div>
+<div class="card lv2"><div class="k">利用できなかった児童（待機児童）</div><div class="v">{{ '{:,}'.format(nat.waiting) }}人</div></div>
+</div>
+<div class="panel">
+<div class="pol">待機児童の{{ nat.unnamed_pct }}%は、どの市町村のものか分かりません
+<small>国が市区町村名で公表しているのは、待機児童が<b>50人以上いる{{ nat.waiting50_count }}市町村</b>だけです（合計{{ '{:,}'.format(nat.waiting50_sum) }}人）。残る<b>{{ '{:,}'.format(nat.unnamed) }}人</b>がどこにいるのかは、国の公表資料からは分かりません。調査自体は市区町村ごとに行われています。</small></div>
+<p class="src" style="margin-top:10px">公表は PDF のみで、Excel も CSV もありません。e-Stat にも載っていません（業務統計のページに「e-Statに掲載されていない」と明記）。当社はPDFから表を取り出して <a href="{{ base }}/data">CSVとJSONで配っています</a>。合計は国の資料の全国値と一致することを確かめています。</p>
+</div>
+<h2>都道府県から見る</h2>
+<div class="panel"><p style="font-size:14px;line-height:2">
+{%- for r in (areas_pref or []) %}<a href="{{ base }}/area/{{ r.name|urlencode }}">{{ r.name }}</a>{% if not loop.last %} ・ {% endif %}{% endfor %}
+</p>
+<p style="margin:10px 0 0"><a class="btn ghost" href="{{ base }}/waiting50">待機児童が50人以上の{{ nat.waiting50_count }}市町村を見る</a></p>
+</div>
+{% endblock %}

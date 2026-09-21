@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}学童保育の待機児童が多い市町村{{ rows|length }}件（全国一覧）｜{{ site }}{% endblock %}
+{% block desc %}放課後児童クラブ（学童保育）の待機児童が50人以上いる全国{{ rows|length }}市町村の一覧。こども家庭庁調査（{{ nat.as_of }}現在）。{% endblock %}
+{% block body %}
+<h1>待機児童が50人以上の市町村（{{ rows|length }}件）</h1>
+<p class="lead">国が市区町村名で公表しているのは、この{{ rows|length }}市町村だけです。合計{{ '{:,}'.format(nat.waiting50_sum) }}人で、全国{{ '{:,}'.format(nat.waiting) }}人の{{ 100 - nat.unnamed_pct }}%にあたります。<b>残り{{ '{:,}'.format(nat.unnamed) }}人がどの市町村のものかは、国の公表では分かりません。</b></p>
+<div class="tscroll"><table class="t">
+<tr><th class="n">順位</th><th>都道府県</th><th>市区町村</th><th class="n">待機児童</th></tr>
+{% for r in rows %}<tr><td class="n">{{ r.no }}</td><td><a href="{{ base }}/area/{{ r.pref|urlencode }}">{{ r.pref }}</a></td><td>{{ r.city }}</td><td class="n">{{ '{:,}'.format(r.waiting) }}人</td></tr>{% endfor %}
+</table></div>
+<p class="src">出典: こども家庭庁「放課後児童健全育成事業（放課後児童クラブ）の実施状況」（{{ nat.as_of }}現在）。表に「＊」が付く市町村は、国の資料で注記があるものです。<a href="{{ base }}/data">CSVで受け取る</a></p>
+{% endblock %}
