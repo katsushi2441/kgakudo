@@ -210,6 +210,7 @@ function foot_html($D, $SELF) {
     echo '</div></main><footer><div class="wrap">';
     echo '<div>出典: ' . h($D['source']) . '（' . h($D['as_of']) . '現在）を加工して作成。当社は国が公表していない数字を推定しません。</div>';
     echo '<div style="margin-top:6px">関連: <a href="https://kurage.exbridge.jp/kflood.php/">洪水・内水ハザードマップ</a>／<a href="https://exbridge.jp/outsourcing/" target="_blank" rel="noopener">AI-IT顧問契約</a></div>';
+    echo '<div style="margin-top:6px"><a href="https://kappstore.exbridge.jp/app.php?id=f2853d368ddf8e57&amp;ref=kgakudo" rel="noopener">このサイトの一式をオンプレミスで導入する（商品ページ）</a></div>';
     echo '</div></footer></body></html>';
 }
 
