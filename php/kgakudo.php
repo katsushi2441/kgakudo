@@ -198,6 +198,8 @@ function head_html($title, $desc, $SELF, $SITE, $nav, $canon) {
                       'acceptedAnswer' => array('@type' => 'Answer', 'text' => 'こども家庭庁「放課後児童健全育成事業（放課後児童クラブ）の実施状況」です。PDFから表を取り出し、合計が国の公表する全国値と一致することを確認しています。推定した数字は含みません。')))),
         ));
     echo '<script type="application/ld+json">' . json_encode($ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>';
+    // 再販パートナー募集の枠（中身は kurage_web/partner-bar.js。kurage.exbridge.jp 以外では何も出さない）
+    echo '<script src="https://kurage.exbridge.jp/partner-bar.js" defer></script>';
     echo '</head><body><header><div class="wrap"><a class="brand" href="' . h($SELF) . '/">' . h($SITE) . '</a><nav class="menu">';
     $items = array('' => '住所で調べる', 'waiting50' => '待機が多い市町村', 'data' => 'データ配布', 'about' => 'このデータについて');
     foreach ($items as $k => $label) {
